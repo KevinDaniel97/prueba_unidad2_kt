@@ -13,49 +13,40 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 @Entity
-@Table(name="doctor")
+@Table(name = "doctor")
 public class Doctor {
+
 	@Id
 	@Column(name = "doct_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doct_id_sec")
-	@SequenceGenerator(name = "doct_id_sec", sequenceName = "doct_id_sec", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doct_seq_id")
+	@SequenceGenerator(name = "doct_seq_id", sequenceName = "doct_seq_id", allocationSize = 1)
 	private Integer id;
-	
+
 	@Column(name = "doct_cedula")
 	private String cedula;
-	
+
 	@Column(name = "doct_nombre")
 	private String nombre;
-	
+
 	@Column(name = "doct_apellido")
 	private String apellido;
-	
+
 	@Column(name = "doct_fecha_nacimiento")
 	private LocalDateTime fechaNacimiento;
-	
+
 	@Column(name = "doct_numero_consultorio")
-	private String numConsultorio;
+	private String numeroConsultorio;
 
-	@Column(name = "doct_titulo")
-	private String titulo;
-	
-	@Column(name = "doct_salario")
-	private BigDecimal salario;
-	
-	@OneToMany(mappedBy="doctor")
-	private List<CitaMedica> citaMedica;
-	
-	
+	@Column(name = "doct_codigo_senescyt")
+	private String codigoSenescyt;
 
+	@Column(name = "doct_genero")
+	private String genero;
 
-	@Override
-	public String toString() {
-		return "Doctor [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
-				+ ", fechaNacimiento=" + fechaNacimiento + ", numConsultorio=" + numConsultorio + ", titulo=" + titulo
-				+ ", salario=" + salario + "]";
-	}
-	//set y get
-	
+	@OneToMany(mappedBy = "doctor")
+	private List<CitaMedica> citasMedicas;
+
+	// SET y GET
 	public Integer getId() {
 		return id;
 	}
@@ -96,38 +87,36 @@ public class Doctor {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getNumConsultorio() {
-		return numConsultorio;
+	public String getNumeroConsultorio() {
+		return numeroConsultorio;
 	}
 
-	public void setNumConsultorio(String numConsultorio) {
-		this.numConsultorio = numConsultorio;
+	public void setNumeroConsultorio(String numeroConsultorio) {
+		this.numeroConsultorio = numeroConsultorio;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getCodigoSenescyt() {
+		return codigoSenescyt;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setCodigoSenescyt(String codigoSenescyt) {
+		this.codigoSenescyt = codigoSenescyt;
 	}
 
-	public BigDecimal getSalario() {
-		return salario;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setSalario(BigDecimal salario) {
-		this.salario = salario;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
-	public List<CitaMedica> getCitaMedica() {
-		return citaMedica;
+	public List<CitaMedica> getCitasMedicas() {
+		return citasMedicas;
 	}
 
-	public void setCitaMedica(List<CitaMedica> citaMedica) {
-		this.citaMedica = citaMedica;
+	public void setCitasMedicas(List<CitaMedica> citasMedicas) {
+		this.citasMedicas = citasMedicas;
 	}
-	
-	
-	
+
 }

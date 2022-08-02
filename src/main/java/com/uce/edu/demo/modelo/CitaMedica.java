@@ -14,65 +14,59 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="cita_medica")
+@Table(name = "cita_medica")
 public class CitaMedica {
+
 	@Id
-	@Column(name = "cime_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cime_id_sec")
-	@SequenceGenerator(name = "cime_id_sec", sequenceName = "cime_id_sec", allocationSize = 1)
+	@Column(name = "cita_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cita_seq_id")
+	@SequenceGenerator(name = "cita_seq_id", sequenceName = "cita_seq_id", allocationSize = 1)
 	private Integer id;
-	@Column(name = "cime_numero")
-	private String numero;
-	
-	@Column(name = "cime_fecha_cita")
+
+	@Column(name = "cita_numero_cita")
+	private String numeroCita;
+
+	@Column(name = "cita_fecha_cita")
 	private LocalDateTime fechaCita;
-	
-	@Column(name = "cime_costo_cita")
-	private BigDecimal costoCita;
-	
-	@Column(name = "cime_lugar_cita")
+
+	@Column(name = "cita_valor_cita")
+	private BigDecimal valorCita;
+
+	@Column(name = "cita_lugar_cita")
 	private String lugarCita;
-	
-	@Column(name = "cime_diagnostico")
+
+	@Column(name = "cita_diagnostico")
 	private String diagnostico;
-	@Column(name = "cime_receta")
 
+	@Column(name = "cita_receta")
 	private String receta;
-	@Column(name = "cime_fecha_control")
 
-	private LocalDateTime fechaControl;
-	
+	@Column(name = "cita_proxima_cita")
+	private LocalDateTime proximaCita;
+
 	@ManyToOne
-	@JoinColumn(name = "cime_id_paciente")
+	@JoinColumn(name = "cita_paci_id")
 	private Paciente paciente;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "cime_id_doctor")
+	@JoinColumn(name = "cita_doct_id")
 	private Doctor doctor;
-	
 
-	@Override
-	public String toString() {
-		return "CitaMedica [id=" + id + ", numero=" + numero + ", fechaCita=" + fechaCita + ", costoCita=" + costoCita
-				+ ", lugarCita=" + lugarCita + ", diagnostico=" + diagnostico + ", receta=" + receta + ", fechaControl="
-				+ fechaControl + "]";
-	}
-
-	//set y get 
 	public Integer getId() {
 		return id;
 	}
 
+	// SET y GET
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getNumero() {
-		return numero;
+	public String getNumeroCita() {
+		return numeroCita;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumeroCita(String numeroCita) {
+		this.numeroCita = numeroCita;
 	}
 
 	public LocalDateTime getFechaCita() {
@@ -83,12 +77,12 @@ public class CitaMedica {
 		this.fechaCita = fechaCita;
 	}
 
-	public BigDecimal getCostoCita() {
-		return costoCita;
+	public BigDecimal getValorCita() {
+		return valorCita;
 	}
 
-	public void setCostoCita(BigDecimal costoCita) {
-		this.costoCita = costoCita;
+	public void setValorCita(BigDecimal valorCita) {
+		this.valorCita = valorCita;
 	}
 
 	public String getLugarCita() {
@@ -115,12 +109,12 @@ public class CitaMedica {
 		this.receta = receta;
 	}
 
-	public LocalDateTime getFechaControl() {
-		return fechaControl;
+	public LocalDateTime getProximaCita() {
+		return proximaCita;
 	}
 
-	public void setFechaControl(LocalDateTime fechaControl) {
-		this.fechaControl = fechaControl;
+	public void setProximaCita(LocalDateTime proximaCita) {
+		this.proximaCita = proximaCita;
 	}
 
 	public Paciente getPaciente() {
@@ -138,9 +132,5 @@ public class CitaMedica {
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	
 
-
-	
-	
 }

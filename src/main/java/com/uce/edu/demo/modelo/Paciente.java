@@ -13,50 +13,43 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 @Entity
-@Table(name="paciente")
+@Table(name = "paciente")
 public class Paciente {
 
 	@Id
 	@Column(name = "paci_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paci_id_sec")
-	@SequenceGenerator(name = "paci_id_sec", sequenceName = "paci_idd_sec", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "paci_seq_id")
+	@SequenceGenerator(name = "paci_seq_id", sequenceName = "paci_seq_id", allocationSize = 1)
 	private Integer id;
+
 	@Column(name = "paci_cedula")
 	private String cedula;
-	
+
 	@Column(name = "paci_nombre")
 	private String nombre;
-	
+
 	@Column(name = "paci_apellido")
 	private String apellido;
-	
+
 	@Column(name = "paci_fecha_nacimiento")
-	private LocalDateTime fechaNaciento;
-	
-	@Column(name = "paci_codigo_iess")
-	private String codIess;
-	
+	private LocalDateTime fechaNacimiento;
+
+	@Column(name = "paci_codigo_seguro")
+	private String codigoSeguro;
+
 	@Column(name = "paci_estatura")
-	private String estatura;
-	
+	private Double estatura;
+
 	@Column(name = "paci_peso")
-	private String peso;
-	
+	private Double peso;
+
 	@Column(name = "paci_genero")
 	private String genero;
-	
-	@OneToMany(mappedBy="paciente")
-	private List<CitaMedica> citaMedica;
-	
 
-	@Override
-	public String toString() {
-		return "Paciente [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
-				+ ", fechaNaciento=" + fechaNaciento + ", codIess=" + codIess + ", estatura=" + estatura + ", peso="
-				+ peso + ", genero=" + genero + "]";
-	}
-	
-	// set y get 
+	@OneToMany(mappedBy = "paciente")
+	private List<CitaMedica> citasMedicas;
+
+	// SET y GET
 	public Integer getId() {
 		return id;
 	}
@@ -89,35 +82,35 @@ public class Paciente {
 		this.apellido = apellido;
 	}
 
-	public LocalDateTime getFechaNaciento() {
-		return fechaNaciento;
+	public LocalDateTime getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFechaNaciento(LocalDateTime fechaNaciento) {
-		this.fechaNaciento = fechaNaciento;
+	public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getCodIess() {
-		return codIess;
+	public String getCodigoSeguro() {
+		return codigoSeguro;
 	}
 
-	public void setCodIess(String codIess) {
-		this.codIess = codIess;
+	public void setCodigoSeguro(String codigoSeguro) {
+		this.codigoSeguro = codigoSeguro;
 	}
 
-	public String getEstatura() {
+	public Double getEstatura() {
 		return estatura;
 	}
 
-	public void setEstatura(String estatura) {
+	public void setEstatura(Double estatura) {
 		this.estatura = estatura;
 	}
 
-	public String getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
 
-	public void setPeso(String peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
@@ -129,19 +122,12 @@ public class Paciente {
 		this.genero = genero;
 	}
 
-	public List<CitaMedica> getCitaMedica() {
-		return citaMedica;
+	public List<CitaMedica> getCitasMedicas() {
+		return citasMedicas;
 	}
 
-	public void setCitaMedica(List<CitaMedica> citaMedica) {
-		this.citaMedica = citaMedica;
+	public void setCitasMedicas(List<CitaMedica> citasMedicas) {
+		this.citasMedicas = citasMedicas;
 	}
 
-	
-	
-	
-	
-	
-	
-	
 }

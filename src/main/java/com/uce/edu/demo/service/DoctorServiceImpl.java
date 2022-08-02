@@ -10,36 +10,26 @@ import com.uce.edu.demo.repository.IDoctorRepository;
 public class DoctorServiceImpl implements IDoctorService{
 
 	@Autowired
-	private IDoctorRepository iDoctorRespository;
+	private IDoctorRepository doctorRepository;
 	
 	@Override
 	public void insertar(Doctor doctor) {
-		// TODO Auto-generated method stub
-		this.iDoctorRespository.insertar(doctor);
+		this.doctorRepository.insertar(doctor);
 	}
 
 	@Override
-	public Doctor buscarPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return this.iDoctorRespository.buscarPorId(id);
+	public Doctor buscar(Integer id) {
+		return this.doctorRepository.buscar(id);
 	}
 
 	@Override
 	public void actualizar(Doctor doctor) {
-		// TODO Auto-generated method stub
-		this.iDoctorRespository.actualizar(doctor);
+		this.doctorRepository.actualizar(doctor);
 	}
 
 	@Override
 	public void eliminar(Integer id) {
-		// TODO Auto-generated method stub
-		this.iDoctorRespository.eliminar(id);
-	}
-
-	@Override
-	public Doctor buscarPorCedula(String cedula) {
-		// TODO Auto-generated method stub
-		return this.iDoctorRespository.buscarPorCedula(cedula);
+		this.doctorRepository.eliminar(id);
 	}
 
 }

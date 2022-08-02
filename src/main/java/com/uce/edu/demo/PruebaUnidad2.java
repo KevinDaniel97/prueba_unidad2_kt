@@ -1,6 +1,5 @@
 package com.uce.edu.demo;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.apache.log4j.Logger;
@@ -9,11 +8,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.modelo.CitaMedica;
-import com.uce.edu.demo.modelo.CitaMedicaGestora;
 import com.uce.edu.demo.modelo.Doctor;
 import com.uce.edu.demo.modelo.Paciente;
-import com.uce.edu.demo.service.ICitaMedicaService;
+import com.uce.edu.demo.service.ICitaMedicaGestor;
 import com.uce.edu.demo.service.IDoctorService;
 import com.uce.edu.demo.service.IPacienteService;
 
@@ -22,72 +19,64 @@ public class PruebaUnidad2 implements CommandLineRunner{
 	private static Logger log = Logger.getLogger(PruebaUnidad2.class);
 	
 	@Autowired
-	private IDoctorService iDoctorService;
+	private IDoctorService doctorService;
 
 	@Autowired
-	private IPacienteService iPacienteService;
-
+	private IPacienteService pacienteService;
+	
 	@Autowired
-	private ICitaMedicaService iCitaMedicaService;
+	private ICitaMedicaGestor citaMedicaGestor;
+
 	public static void main(String[] args) {
 		SpringApplication.run(PruebaUnidad2.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		//1
-		Doctor doc =new Doctor();
-		doc.setCedula("150");
-		doc.setNombre("Dario");
-		doc.setApellido("Teran");
-		doc.setFechaNacimiento(LocalDateTime.of(2000, 11,10,0,0));
-		doc.setNumConsultorio("01");
-		doc.setTitulo("Psicologia");
-		doc.setSalario(new BigDecimal(1000));
-		this.iDoctorService.insertar(doc);
+		Doctor doctor1 = new Doctor();
+		doctor1.setNombre("kev");
+		doctor1.setApellido("apw");
+		doctor1.setCedula("1");
+		doctor1.setCodigoSenescyt("10");
+		doctor1.setFechaNacimiento(LocalDateTime.now());
+		doctor1.setNumeroConsultorio("10");
+		doctor1.setGenero("M");
 		
-		Doctor doc2 =new Doctor();
-		doc2.setCedula("151");
-		doc2.setNombre("Darki");
-		doc2.setApellido("Tenorio");
-		doc2.setFechaNacimiento(LocalDateTime.of(1997, 10,10,0,0));
-		doc2.setNumConsultorio("04");
-		doc2.setTitulo("general");
-		doc2.setSalario(new BigDecimal(700));
-		this.iDoctorService.insertar(doc2);
+		Doctor doctor2 = new Doctor();
+		doctor2.setNombre("bbb");
+		doctor2.setApellido("aaa");
+		doctor2.setCedula("12");
+		doctor2.setCodigoSenescyt("11");
+		doctor2.setFechaNacimiento(LocalDateTime.now());
+		doctor2.setNumeroConsultorio("14");
+		doctor2.setGenero("M");
 
-		//2
-		Paciente paciente1=new Paciente();
-		paciente1.setNombre("kevin");
-		paciente1.setApellido("Toapanta");
-		paciente1.setCedula("100");
-		paciente1.setFechaNaciento(LocalDateTime.of(2007, 12,10,0,0));
-		paciente1.setCodIess("200");
-		paciente1.setEstatura("169.5 cm");
-		paciente1.setPeso("62 kg");
+		this.doctorService.insertar(doctor1);
+		this.doctorService.insertar(doctor2);
+		
+		Paciente paciente1 = new Paciente();
+		paciente1.setNombre("dan");
+		paciente1.setApellido("dark");
+		paciente1.setCedula("12");
+		paciente1.setFechaNacimiento(LocalDateTime.now());
 		paciente1.setGenero("M");
-		this.iPacienteService.insertar(paciente1);
 		
-		Paciente paciente2=new Paciente();
-		paciente2.setNombre("daniel");
-		paciente2.setApellido("rodrig");
-		paciente2.setCedula("101");
-		paciente2.setFechaNaciento(LocalDateTime.of(2007, 12,10,0,0));
-		paciente2.setCodIess("201");
-		paciente2.setEstatura("170.5 cm");
-		paciente2.setPeso("72 kg");
+		Paciente paciente2 = new Paciente();
+		paciente2.setNombre("ee");
+		paciente2.setApellido("Sussarez");
+		paciente2.setCedula("14");
+		paciente2.setFechaNacimiento(LocalDateTime.now());
 		paciente2.setGenero("M");
-		this.iPacienteService.insertar(paciente2);
-	
-
-		//3
-		//CitaMedica cita1= this.iCitaMedicaService.agendarCita("10", LocalDateTime.of(2007, 12,10,0,0), new BigDecimal(10), "quito", "150","100" );
-		//4
-		//this.iCitaMedicaService.actualizarCitaMedica("99","calor","tomar agua", LocalDateTime.now());
-		//5
-		//this.iCitaMedicaService.citasMedicasReporte(LocalDateTime.now(), new BigDecimal(5));
 		
+		
+		paciente1.setCedula("12");
+		paciente2.setCedula("14");
+		
+		this.pacienteService.insertar(paciente1);
+		this.pacienteService.insertar(paciente2);
+		
+		this.citaMedicaGestor.agendamientoCitaMedica("12", LocalDateTime.now(), null, null, null, null);
+		//this.citaMedicaGestor.actualizacionCitaMedica("1", null, null, null);
 	}
-	
 
 }
